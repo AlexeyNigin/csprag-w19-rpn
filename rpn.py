@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 def calculate(arg):
-	pass
+	if arg in {"exit", "quit"}:
+		quit()
+	stack = []
+	tokens = arg.split
 
 
 def main():
@@ -9,5 +12,5 @@ def main():
 		calculate(input("rpn calc> "))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
