@@ -25,6 +25,11 @@ class TestBasics(unittest.TestCase):
 		self.assertRaises(rpn.CalculatorError, rpn.calculate, "1 0 /")
 		self.assertRaises(rpn.CalculatorError, rpn.calculate, "1 /")
 		self.assertRaises(rpn.CalculatorError, rpn.calculate, "/")
+	def test_power(self):
+		self.assertEqual(rpn.calculate("2 3 ^"), 8)
+		self.assertEqual(rpn.calculate("1 0 ^"), 1)
+		self.assertRaises(rpn.CalculatorError, rpn.calculate, "1 ^")
+		self.assertRaises(rpn.CalculatorError, rpn.calculate, "^")
 	def test_nest(self):
 		self.assertEqual(rpn.calculate("6 2 2 + 4 1 - * + 2 /"), 9)
 		self.assertRaises(rpn.CalculatorError, rpn.calculate, "1 1")
