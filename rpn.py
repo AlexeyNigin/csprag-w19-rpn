@@ -39,11 +39,20 @@ def divide(stack):
 		raise CalculatorError("division by zero")
 
 
+def power(stack):
+	if len(stack) < 2:
+		raise CalculatorError("stack underflow during exponentiation")
+	b = stack.pop()
+	a = stack.pop()
+	stack.append(a ** b)
+
+
 OPERATORS = {
 	"+" : add,
 	"-" : subtract,
 	"*" : multiply,
-	"/" : divide
+	"/" : divide,
+	"^" : power
 }
 
 
