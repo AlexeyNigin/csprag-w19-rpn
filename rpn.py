@@ -8,13 +8,42 @@ class CalculatorError(Exception):
 def add(stack):
 	if len(stack) < 2:
 		raise CalculatorError("stack underflow during addition")
-	a = stack.pop()
 	b = stack.pop()
-	stack.append(a+b)
+	a = stack.pop()
+	stack.append(a + b)
+
+def subtract(stack):
+	if len(stack) < 2:
+		raise CalculatorError("stack underflow during subtraction")
+	b = stack.pop()
+	a = stack.pop()
+	stack.append(a - b)
+
+
+def multiply(stack):
+	if len(stack) < 2:
+		raise CalculatorError("stack underflow during multiplication")
+	b = stack.pop()
+	a = stack.pop()
+	stack.append(a * b)
+
+
+def divide(stack):
+	if len(stack) < 2:
+		raise CalculatorError("stack underflow during division")
+	b = stack.pop()
+	a = stack.pop()
+	try:
+		stack.append(a / b)
+	except:
+		raise CalculatorError("division by zero")
 
 
 OPERATORS = {
-	"+" : add
+	"+" : add,
+	"-" : subtract,
+	"*" : multiply,
+	"/" : divide
 }
 
 
@@ -43,7 +72,9 @@ def calculate(arg):
 def main():
 	while True:
 		try:
-			print(calculate(input("rpn calc> ")))
+			expression = input("rpn calc> ")
+			if expression.strip() != "":
+				print(calculate(expression))
 		except CalculatorError as inst:
 			print("Malformed expression: " + inst.args[0])
 
